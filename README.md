@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KELES Maschinenbau – Website
 
-## Getting Started
+Moderne Multi-Page-Website für KELES Maschinenbau (Augsburg), gebaut mit **Next.js 16**, **Tailwind CSS v4** und **Framer Motion**. Design im industriellen, cleanen Look (dunkler Hero, blaue Akzente).
 
-First, run the development server:
+## Schnellstart
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # Entwicklung → http://localhost:3000
+npm run build    # Produktions-Build
+npm run start    # Produktions-Server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Projektstruktur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/                 Seiten (App Router)
+  page.tsx           Startseite
+  leistungen/        Übersicht + [slug]-Detailseiten (5 Leistungen)
+  maschinenpark/  branchen/  ueber-uns/  galerie/  kontakt/
+  impressum/  datenschutz/
+  api/contact/       Formular-Endpoint
+  sitemap.ts  robots.ts
+components/           Header, Footer, Hero, ServiceCard, USPSection, ContactForm, …
+data/                 Inhalte zentral: company, services, branchen, usps
+public/images/        Bilder (aktuell Platzhalter – siehe unten)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Alle Texte und Kontaktdaten sind zentral in `data/` gepflegt (Single Source of Truth).
 
-## Learn More
+## Kontaktformular
 
-To learn more about Next.js, take a look at the following resources:
+Das Formular postet an `app/api/contact/route.ts`. Der E-Mail-Versand läuft optional über
+[Resend](https://resend.com) per REST-API. Variablen in `.env.local` setzen (siehe `.env.example`):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+RESEND_API_KEY=...
+CONTACT_FROM_EMAIL=Website <kontakt@keles-maschinenbau.de>
+CONTACT_TO_EMAIL=info@keles-maschinenbau.de
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ohne Konfiguration werden Anfragen serverseitig nur protokolliert (kein Versand). Spam-Schutz
+über Honeypot-Feld (kein externes CAPTCHA → datenschutzfreundlich).
 
-## Deploy on Vercel
+## ⚠️ Platzhalter-Bilder
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Die Bilder in `public/images/` sind **Platzhalter** (Stockfotos) und müssen vor dem Go-Live
+durch echte Fotos vom Betrieb ersetzt werden. Dateinamen einfach 1:1 überschreiben.
+Quelle/Strategie: `../website-recherche/bilder-referenzen/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Vor dem Go-Live zu ergänzen
+
+- Echte Betriebsfotos (Werkstatt, Maschinen, Bauteile, Inhaber)
+- Impressum: USt-ID & zuständige Kammer (`app/impressum/page.tsx`)
+- Datenschutzerklärung rechtlich prüfen lassen
+- Resend-Credentials für den Mailversand
+- Logo in Vektorform (aktuell sauberes Text-Logo „KELES")
+- Maschinenpark-Details, Öffnungszeiten bestätigen
+
+## Deployment
+
+Optimal auf **Vercel** oder **Netlify** (Next.js wird nativ unterstützt). Die Seite ist
+weitgehend statisch (SSG) – nur die Formular-Route läuft serverseitig.
