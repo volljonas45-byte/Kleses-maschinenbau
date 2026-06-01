@@ -16,11 +16,12 @@ export default function MapEmbed({
     <div className={`relative overflow-hidden border border-paper-dark ${className}`}>
       <iframe
         title="Standort KELES Maschinenbau"
-        src={`https://www.openstreetmap.org/export/embed.html?bbox=10.919%2C48.370%2C10.960%2C48.410&layer=mapnik&marker=48.3905%2C10.9395`}
+        src="https://maps.google.com/maps?q=Am+Mittleren+Moos+20,+86167+Augsburg,+Deutschland&t=m&z=16&output=embed&iwloc=near"
         width="100%"
         style={{ height, border: 0, display: "block" }}
         loading="lazy"
         allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
       />
 
       {/* Info-Overlay */}
