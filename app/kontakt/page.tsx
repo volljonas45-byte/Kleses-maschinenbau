@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
+import MapEmbed from "@/components/MapEmbed";
 import { company } from "@/data/company";
 
 export const metadata: Metadata = {
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function KontaktPage() {
-  const mapsQuery = encodeURIComponent(company.address.full);
 
   return (
     <>
@@ -98,17 +98,7 @@ export default function KontaktPage() {
               </ul>
 
               {/* Karte */}
-              <div className="mt-8 aspect-[4/3] overflow-hidden border border-paper-dark">
-                <iframe
-                  title="Standort KELES Maschinenbau auf Google Maps"
-                  src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
-                  width="100%"
-                  height="100%"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  style={{ border: 0 }}
-                />
-              </div>
+              <MapEmbed height="300px" className="mt-8" />
             </div>
 
             {/* Formular */}

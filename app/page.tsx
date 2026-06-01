@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import Hero from "@/components/Hero";
+import StatsBar from "@/components/StatsBar";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceCard from "@/components/ServiceCard";
 import BranchenGrid from "@/components/BranchenGrid";
 import USPSection from "@/components/USPSection";
+import ProcessSection from "@/components/ProcessSection";
 import GalleryGrid from "@/components/GalleryGrid";
 import ContactCTA from "@/components/ContactCTA";
 import Reveal from "@/components/Reveal";
@@ -16,6 +18,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <StatsBar />
 
       {/* 02 – Über uns kurz */}
       <section className="bg-white">
@@ -148,12 +151,15 @@ export default function Home() {
       {/* 05 – Warum KELES (blau) */}
       <USPSection />
 
-      {/* 06 – Galerie-Teaser */}
+      {/* 06 – Prozess */}
+      <ProcessSection />
+
+      {/* 07 – Galerie-Teaser */}
       <section className="bg-paper">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <SectionHeading
-              index="06"
+              index="08"
               eyebrow="Einblicke"
               title="Aus der Werkstatt"
             />

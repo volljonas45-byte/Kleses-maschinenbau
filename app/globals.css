@@ -50,8 +50,23 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* dünne Scrollbar im dunklen Look */
 ::selection {
   background: var(--color-accent);
   color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-steel-light);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
 }
